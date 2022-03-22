@@ -1,9 +1,9 @@
 {
-  "name": "ngx-cookieconsent",
-  "version": "0.0.0-development",
+  "name": "@jcb-entrnce/ngx-cookieconsent",
+  "version": "2.3.1",
   "peerDependencies": {
-    "@angular/common": "13.2.7",
-    "@angular/core": "13.2.7",
+    "@angular/common": "^12.0.1",
+    "@angular/core": "^12.0.1",
     "cookieconsent": "^3.1.1"
   },
   "dependencies": {
