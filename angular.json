@@ -32,6 +32,66 @@
     }
   },
   "projects": {
+    "ngx-cookieconsent": {
+      "projectType": "library",
+      "root": "libs/ngx-cookieconsent",
+      "sourceRoot": "libs/ngx-cookieconsent/src",
+      "prefix": "ngc",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "project": "libs/ngx-cookieconsent/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ngx-cookieconsent/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/ngx-cookieconsent/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ngx-cookieconsent"],
+          "options": {
+            "jestConfig": "libs/ngx-cookieconsent/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ngx-cookieconsent/src/**/*.ts",
+              "libs/ngx-cookieconsent/src/**/*.html"
+            ]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/ngx-cookieconsent/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/ngx-cookieconsent"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
+        },
+        "release": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "npx semantic-release",
+            "cwd": "libs/ngx-cookieconsent"
+          }
+        }
+      }
+    },
     "ngx-cookieconsent-demo": {
       "projectType": "application",
       "root": "apps/ngx-cookieconsent-demo",
@@ -115,7 +175,8 @@
               "apps/ngx-cookieconsent-demo/src/**/*.ts",
               "apps/ngx-cookieconsent-demo/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -168,9 +229,7 @@
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "routes": [
-              "/"
-            ]
+            "routes": ["/"]
           },
           "configurations": {
             "production": {
@@ -206,66 +265,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/ngx-cookieconsent-demo-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "ngx-cookieconsent": {
-      "projectType": "library",
-      "root": "libs/ngx-cookieconsent",
-      "sourceRoot": "libs/ngx-cookieconsent/src",
-      "prefix": "ngc",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "project": "libs/ngx-cookieconsent/ng-package.json"
           },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/ngx-cookieconsent/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/ngx-cookieconsent/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ngx-cookieconsent"],
-          "options": {
-            "jestConfig": "libs/ngx-cookieconsent/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/ngx-cookieconsent/src/**/*.ts",
-              "libs/ngx-cookieconsent/src/**/*.html"
-            ]
-          }
-        },
-        "compodoc": {
-          "builder": "@twittwer/compodoc:compodoc",
-          "options": {
-            "tsConfig": "libs/ngx-cookieconsent/tsconfig.lib.json",
-            "outputPath": "dist/compodoc/ngx-cookieconsent"
-          },
-          "configurations": {
-            "json": {
-              "exportFormat": "json"
-            }
-          }
-        },
-        "release": {
-          "builder": "@nrwl/workspace:run-commands",
-          "options": {
-            "command": "npx semantic-release",
-            "cwd": "libs/ngx-cookieconsent"
-          }
+          "outputs": ["{options.outputFile}"]
         }
       }
     }
