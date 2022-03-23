@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'ngx-cookieconsent',
+  displayName: '@jcb-entrnce/ngx-cookieconsent',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
